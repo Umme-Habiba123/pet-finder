@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useState, useEffect } from "react";
 import { 
   Moon, 
@@ -100,7 +101,7 @@ export default function NavBar() {
                 <PawPrint className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-pink-600 to-orange-500 bg-clip-text text-transparent">
-                petFinder
+            petFinder
               </span>
             </Link>
           </div>
