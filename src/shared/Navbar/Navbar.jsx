@@ -1,37 +1,17 @@
-"use client";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router";
 import { Moon, Sun } from "lucide-react";
+import logo from "../../assets/logo.png";
+import useAuth from "../../hooks/useAuth";
+import "./NavBar.css";
 
-import NavLink from "@/components/buttons/NavLink";
-import Logo from "@/layouts/Logo";
-import AuthButtons from "@/components/buttons/AuthButtons";
-import { useSession } from "next-auth/react";
-
-const Navbar = () => {
-  const { status } = useSession();
-  const isLoggedIn = status === "authenticated";
-
-  const links = (
-    <>
-      <li>
-        <NavLink href={"/"}>Home</NavLink>
-      </li>
-      <li>
-        <NavLink href={"/services"}>Services</NavLink>
-      </li>
-      {/* <li>
-        <NavLink href={"/my-bookings"}>My Bookings</NavLink>
-      </li> */}
-      {isLoggedIn && (
-        <li>
-          <NavLink href="/my-bookings">My Bookings</NavLink>
-        </li>
-      )}
-    </>
-  );
-
+const NavBar = () => {
   const [theme, setTheme] = useState("light");
+
+  // Get user from auth context
+  const { user, logOut } = useAuth();
+  const isLoggedIn = !!user;
+
   useEffect(() => {
     // Get theme from localStorage
     const savedTheme = localStorage.getItem("theme") || "light";
@@ -60,6 +40,104 @@ const Navbar = () => {
       document.documentElement.classList.remove("dark");
     }
   };
+
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold bg-purple-600 text-white dark:bg-orange-500"
+              : ""
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/books"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+              : ""
+          }
+        >
+          Books
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+              : ""
+          }
+        >
+          About-Us
+        </NavLink>
+      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+                  : ""
+              }
+            >
+              Contact-Us
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+                  : ""
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        </>
+      )}
+      {/* {!user && (
+        // <>
+        //   <li>
+        //     <NavLink
+        //       to="/about"
+        //       className={({ isActive }) =>
+        //         isActive
+        //           ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+        //           : ""
+        //       }
+        //     >
+        //       About-Us
+        //     </NavLink>
+        //   </li>
+        //   {/* <li>
+        //     <NavLink
+        //       to="/contact"
+        //       className={({ isActive }) =>
+        //         isActive
+        //           ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+        //           : ""
+        //       }
+        //     >
+        //       Contact-Us
+        //     </NavLink>
+        //   </li> */}{" "}
+    </>
+    // )}
+    // </>
+  );
 
   return (
     <div className="bg-custom-navbar shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary">
@@ -92,7 +170,16 @@ const Navbar = () => {
           </div>
 
           {/* Logo */}
-          <Logo />
+          <Link to="/" className="flex items-center gap-2 ml-2 lg:ml-4">
+            <img
+              className="w-10 h-10 sm:w-12 sm:h-12"
+              src={logo}
+              alt="BookPilot Logo"
+            />
+            <span className="font-bold text-lg sm:text-xl hidden sm:inline">
+              BookPilot
+            </span>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -116,7 +203,7 @@ const Navbar = () => {
           </button>
 
           {/* Conditional Rendering: Login/Register OR User Profile */}
-          {/* {isLoggedIn ? (
+          {isLoggedIn ? (
             // User Profile Picture with Logout Dropdown
             <div className="dropdown dropdown-end">
               <div
@@ -124,4 +211,54 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-9 sm:w-10 rounded-full ring ring
+                <div className="w-9 sm:w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    src={user?.photoURL || "https://i.pravatar.cc/150?img=12"}
+                    alt={user?.displayName || "User"}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-\[1]\ mt-3 w-40 p-2 shadow-lg"
+              >
+                <li>
+                  <a
+                    onClick={() => logOut()}
+                    className="text-secondary font-bold"
+                  >
+                    Logout
+                  </a>
+                  <Link
+                    to={"/dashboard/profile"}
+                    className="text-secondary font-bold"
+                  >
+                    Profile
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            // Login/Register Buttons
+            <div className="flex gap-1 sm:gap-2">
+              <Link
+                to="/login"
+                className="btn bg-purple-600 text-white dark:bg-orange-500 dark:border-0 btn-sm text-xs sm:text-sm"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="btn bg-purple-600 dark:bg-orange-500 dark:border-0 btn-sm text-white text-xs sm:text-sm"
+              >
+                Register
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default NavBar;
