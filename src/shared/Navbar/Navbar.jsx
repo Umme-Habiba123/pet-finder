@@ -1,16 +1,20 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router";
+// import { Link, Link } from "react-router";
 import { Moon, Sun } from "lucide-react";
-import logo from "../../assets/logo.png";
-import useAuth from "../../hooks/useAuth";
-import "./NavBar.css";
+import Link from "next/link";
+// import logo from "../../assets/logo.png";
+// import useAuth from "../../hooks/useAuth";
+// import "./NavBar.css";
+
 
 const NavBar = () => {
   const [theme, setTheme] = useState("light");
 
   // Get user from auth context
-  const { user, logOut } = useAuth();
-  const isLoggedIn = !!user;
+//   const { user, logOut } = useAuth();
+//   const isLoggedIn = !!user;
 
   useEffect(() => {
     // Get theme from localStorage
@@ -27,25 +31,25 @@ const NavBar = () => {
     }
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
+  consthrefggleTheme = () => {
+//     const newTheme = theme === "light" ? "dark" : "light";
+//     setTheme(newTheme);
+//     localStorage.setItem("theme", newTheme);
 
-    // Set both DaisyUI theme and custom dark class
-    document.documentElement.setAttribute("data-theme", newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
+//     // Set both DaisyUI theme and custom dark class
+//     document.documentElement.setAttribute("data-theme", newTheme);
+//     if (newTheme === "dark") {
+//       document.documentElement.classList.add("dark");
+//     } else {
+//       document.documentElement.classList.remove("dark");
+//     }
+//   };
 
   const links = (
     <>
       <li>
-        <NavLink
-          to="/"
+        <Link
+         href={"/"}
           className={({ isActive }) =>
             isActive
               ? "font-semibold bg-purple-600 text-white dark:bg-orange-500"
@@ -53,11 +57,11 @@ const NavBar = () => {
           }
         >
           Home
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink
-          to="/books"
+        <Link
+         href={"/books"}
           className={({ isActive }) =>
             isActive
               ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
@@ -65,11 +69,11 @@ const NavBar = () => {
           }
         >
           Books
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink
-          to="/about"
+        <Link
+         href={"/about"}
           className={({ isActive }) =>
             isActive
               ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
@@ -77,13 +81,13 @@ const NavBar = () => {
           }
         >
           About-Us
-        </NavLink>
+        </Link>
       </li>
-      {user && (
+      {/* {user && (
         <>
           <li>
-            <NavLink
-              to="/contact"
+            <Link
+             href="/contact"
               className={({ isActive }) =>
                 isActive
                   ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
@@ -91,12 +95,12 @@ const NavBar = () => {
               }
             >
               Contact-Us
-            </NavLink>
+            </Link>
           </li>
 
           <li>
-            <NavLink
-              to="/dashboard"
+            <Link
+             href="/dashboard"
               className={({ isActive }) =>
                 isActive
                   ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
@@ -104,15 +108,16 @@ const NavBar = () => {
               }
             >
               Dashboard
-            </NavLink>
+            </Link>
           </li>
         </>
-      )}
+      )} */}
+
       {/* {!user && (
         // <>
         //   <li>
-        //     <NavLink
-        //       to="/about"
+        //     <Link
+        //      href="/about"
         //       className={({ isActive }) =>
         //         isActive
         //           ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
@@ -120,11 +125,11 @@ const NavBar = () => {
         //       }
         //     >
         //       About-Us
-        //     </NavLink>
+        //     </Link>
         //   </li>
         //   {/* <li>
-        //     <NavLink
-        //       to="/contact"
+        //     <Link
+        //      href="/contact"
         //       className={({ isActive }) =>
         //         isActive
         //           ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
@@ -132,7 +137,7 @@ const NavBar = () => {
         //       }
         //     >
         //       Contact-Us
-        //     </NavLink>
+        //     </Link>
         //   </li> */}{" "}
     </>
     // )}
@@ -140,7 +145,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="bg-custom-navbar shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary">
+    <div className="bg-custom-navbar shadow-md stickyhrefp-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary">
       <div className="navbar max-w-7xl mx-auto">
         <div className="navbar-start">
           {/* Mobile Hamburger Menu */}
@@ -170,7 +175,7 @@ const NavBar = () => {
           </div>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 ml-2 lg:ml-4">
+          {/* <Linkhref="/" className="flex items-center gap-2 ml-2 lg:ml-4">
             <img
               className="w-10 h-10 sm:w-12 sm:h-12"
               src={logo}
@@ -179,7 +184,7 @@ const NavBar = () => {
             <span className="font-bold text-lg sm:text-xl hidden sm:inline">
               BookPilot
             </span>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Desktop Menu */}
@@ -189,7 +194,7 @@ const NavBar = () => {
 
         {/* Right Side Actions */}
         <div className="navbar-end gap-2 pr-2 sm:pr-4">
-          {/* Theme Toggle */}
+          {/* Themehrefggle */}
           <button
             onClick={toggleTheme}
             className="btn btn-ghost btn-circle"
@@ -203,7 +208,7 @@ const NavBar = () => {
           </button>
 
           {/* Conditional Rendering: Login/Register OR User Profile */}
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? (
             // User Profile Picture with Logout Dropdown
             <div className="dropdown dropdown-end">
               <div
@@ -230,7 +235,7 @@ const NavBar = () => {
                     Logout
                   </a>
                   <Link
-                    to={"/dashboard/profile"}
+                   href={"/dashboard/profile"}
                     className="text-secondary font-bold"
                   >
                     Profile
@@ -239,22 +244,22 @@ const NavBar = () => {
               </ul>
             </div>
           ) : (
-            // Login/Register Buttons
+            
             <div className="flex gap-1 sm:gap-2">
               <Link
-                to="/login"
+               href="/login"
                 className="btn bg-purple-600 text-white dark:bg-orange-500 dark:border-0 btn-sm text-xs sm:text-sm"
               >
                 Login
               </Link>
               <Link
-                to="/register"
+               href="/register"
                 className="btn bg-purple-600 dark:bg-orange-500 dark:border-0 btn-sm text-white text-xs sm:text-sm"
               >
                 Register
               </Link>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

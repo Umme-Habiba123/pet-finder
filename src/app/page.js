@@ -1,9 +1,11 @@
-import Navbar from "@/shared/Navbar/Navbar";
+// import Navbar from "@/shared/Navbar/Navbar";
+
+import NavBar from "@/shared/Navbar/Navbar";
 
 export default function Home() {
   return (
    <div>
-    <Navbar></Navbar>
+    <NavBar></NavBar>
    </div>
   );
 }
