@@ -223,27 +223,29 @@ export default function HeroSection() {
             
             {/* Right Content - Dog Image */}
             <div className={`relative ${isVisible ? 'animate-scale-in delay-200' : 'opacity-0'}`}>
-              <div className="relative aspect-square lg:aspect-auto lg:h-[600px] max-w-lg mx-auto">
+              <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] max-w-2xl mx-auto">
                 {/* Decorative Circle Background */}
                 <div className="absolute inset-0 bg-base-300/30 rounded-full blur-3xl transform scale-75"></div>
                 
                 {/* Dog Image Container */}
-                <div className="relative z-10 h-full flex items-center justify-center">
+                <div className="relative z-10 h-full w-full rounded-3xl overflow-hidden shadow-2xl">
                   <img 
-                    src="https://i.ibb.co.com/yBhQSpjc/photo-1587300003388-59208cc962cb.avif" 
+                    src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3" 
                     alt="Adorable dog ready for adoption" 
-                    className="w-full h-full object-contain drop-shadow-2xl"
+                    className="w-full h-full object-cover object-center"
                   />
+                  {/* Gradient Overlay for better text contrast if needed */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                 </div>
                 
                 {/* Floating Elements around the dog */}
-                <div className="absolute top-10 right-0 animate-float">
+                <div className="absolute -top-5 -right-5 animate-float">
                   <svg className="w-16 h-16 lg:w-20 lg:h-20 fill-current text-accent-yellow opacity-20" viewBox="0 0 24 24">
                     <path d="M18.5 2C17.119 2 16 3.119 16 4.5c0 .78.36 1.47.92 1.93-.64.82-1.43 1.54-2.29 2.14-.22-.98-.94-1.79-1.88-2.17C13.35 5.53 14 4.58 14 3.5 14 2.119 12.881 1 11.5 1S9 2.119 9 3.5c0 1.08.65 2.03 1.75 2.9-.94.38-1.66 1.19-1.88 2.17-.86-.6-1.65-1.32-2.29-2.14.56-.46.92-1.15.92-1.93C7.5 3.119 6.381 2 5 2S2.5 3.119 2.5 4.5c0 1.14.77 2.1 1.82 2.39.31 1.05.86 2.01 1.6 2.84.5 2.33 2.05 4.31 4.08 5.44v.08c0 1.381 1.119 2.5 2.5 2.5s2.5-1.119 2.5-2.5v-.08c2.03-1.13 3.58-3.11 4.08-5.44.74-.83 1.29-1.79 1.6-2.84 1.05-.29 1.82-1.25 1.82-2.39 0-1.381-1.119-2.5-2.5-2.5z"/>
                   </svg>
                 </div>
                 
-                <div className="absolute bottom-20 left-0 animate-float" style={{ animationDelay: '1.5s' }}>
+                <div className="absolute -bottom-5 -left-5 animate-float" style={{ animationDelay: '1.5s' }}>
                   <svg className="w-12 h-12 lg:w-16 lg:h-16 fill-current text-accent-yellow opacity-20" viewBox="0 0 24 24">
                     <path d="M8.5 3C7.119 3 6 4.119 6 5.5S7.119 8 8.5 8 11 6.881 11 5.5 9.881 3 8.5 3zm7 0C14.119 3 13 4.119 13 5.5S14.119 8 15.5 8 18 6.881 18 5.5 16.881 3 15.5 3zM5 9c-1.381 0-2.5 1.119-2.5 2.5S3.619 14 5 14s2.5-1.119 2.5-2.5S6.381 9 5 9zm14 0c-1.381 0-2.5 1.119-2.5 2.5S17.619 14 19 14s2.5-1.119 2.5-2.5S20.381 9 19 9zm-7 2c-2.761 0-5 2.239-5 5 0 2.762 2.239 5 5 5s5-2.238 5-5c0-2.761-2.239-5-5-5z"/>
                   </svg>
