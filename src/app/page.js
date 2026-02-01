@@ -4,8 +4,9 @@ import NavBar from "@/shared/Navbar/Navbar";
 
 export default function Home() {
   return (
-   <div>
-    <NavBar></NavBar>
-   </div>
+    <div>
+      {/* navbar */}
+      <NavBar></NavBar>
+    </div>
   );
 }
