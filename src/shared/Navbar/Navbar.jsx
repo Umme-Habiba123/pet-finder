@@ -41,7 +41,7 @@ export default function Navbar() {
     <>
       <style jsx>{`
         .text-accent-yellow {
-          color: #f78848;
+          color: #D4A017;
         }
         .text-accent-yellow:hover {
           color: #B8860B;
@@ -73,7 +73,7 @@ export default function Navbar() {
                 </svg>
               </div>
               <span className="text-2xl lg:text-3xl font-bold text-base-content">
-                Tailwag
+               Pet<span className='text-[#D4A017]'>F</span>inder
               </span>
             </Link>
 
