@@ -1,235 +1,257 @@
-"use client";
+'use client';
 
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-import { useState, useEffect } from "react" ;
-import { 
-  Moon, 
-  Sun, 
-  Menu, 
-  X, 
-  Heart, 
-  Home, 
-  PawPrint, 
-  Info, 
-  Phone,
-  Search,
-  UserCircle,
-  Bell
-} from "lucide-react";
-import Link from "next/link" ;
-
-export default function NavBar() {
-  const [theme, setTheme] = useState("light");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+export default function Navbar() {
+  const [theme, setTheme] = useState('light');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
+    // Get theme from localStorage or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
-    document.documentElement.className = savedTheme;
+    document.documentElement.setAttribute('data-theme', savedTheme);
 
+    // Handle scroll effect
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 20);
     };
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-
-    handleResize();
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.className = newTheme;
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
   };
 
   const navLinks = [
-    { href: "/", label: "Home", icon: <Home className="w-4 h-4" /> },
-    { href: "/adopt", label: "Adopt", icon: <PawPrint className="w-4 h-4" /> },
-    { href: "/care", label: "Care", icon: <Heart className="w-4 h-4" /> },
-    { href: "/about", label: "About", icon: <Info className="w-4 h-4" /> },
-    { href: "/contact", label: "Contact", icon: <Phone className="w-4 h-4" /> },
+    { name: 'Home', href: '/', hasDropdown: true },
+    { name: 'About', href: '/about' },
+    { name: 'Puppies', href: '/puppies' },
+    { name: 'Services', href: '/services' },
+    { name: 'Pages', href: '/pages', hasDropdown: true },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
-    <header 
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-white/95 dark:bg-gray-900/95 shadow-md backdrop-blur-md" 
-          : "bg-white dark:bg-gray-900"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          
-          {/* Logo & Mobile Menu Toggle */}
-          <div className="flex items-center space-x-4">
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMenu}
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <X className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-              ) : (
-                <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-              )}
-            </button>
-
-            {/* Logo */}
-            <Link 
-              href="/" 
-              className="flex items-center space-x-2 group"
-            >
-              <div className="bg-black p-2 rounded-xl group-hover:scale-105 transition-transform duration-300">
-                <PawPrint className="w-6 h-6 text-white" />
+    <>
+      <style jsx>{`
+        .text-accent-yellow {
+          color: #f78848;
+        }
+        .text-accent-yellow:hover {
+          color: #B8860B;
+        }
+        .star-icon {
+          color: #D4A017;
+        }
+      `}</style>
+      
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+          scrolled 
+            ? 'bg-base-100/95 backdrop-blur-md shadow-sm border-base-300' 
+            : 'bg-base-100 border-transparent'
+        }`}
+      >
+        <div className="w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20 lg:h-24">
+            
+            {/* Logo Section */}
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative p-2.5 bg-neutral text-neutral-content rounded-xl transform group-hover:scale-105 transition-all duration-300">
+                <svg 
+                  className="w-6 h-6" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8.5 3C7.119 3 6 4.119 6 5.5S7.119 8 8.5 8 11 6.881 11 5.5 9.881 3 8.5 3zm7 0C14.119 3 13 4.119 13 5.5S14.119 8 15.5 8 18 6.881 18 5.5 16.881 3 15.5 3zM5 9c-1.381 0-2.5 1.119-2.5 2.5S3.619 14 5 14s2.5-1.119 2.5-2.5S6.381 9 5 9zm14 0c-1.381 0-2.5 1.119-2.5 2.5S17.619 14 19 14s2.5-1.119 2.5-2.5S20.381 9 19 9zm-7 2c-2.761 0-5 2.239-5 5 0 2.762 2.239 5 5 5s5-2.238 5-5c0-2.761-2.239-5-5-5z"/>
+                </svg>
               </div>
-              <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-pink-600 to-orange-500 bg-clip-text text-transparent">
-            petFinder
+              <span className="text-2xl lg:text-3xl font-bold text-base-content">
+                Tailwag
               </span>
             </Link>
-          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-pink-600 dark:hover:text-pink-400 transition-colors font-medium"
-              >
-                <span className="text-pink-500">{link.icon}</span>
-                <span>{link.label}</span>
-              </Link>
-            ))}
-          </div>
-
-          {/* Right Side Actions */}
-          <div className="flex items-center space-x-2 lg:space-x-4">
-            {/* Search Bar (Desktop only) */}
-            <div className="hidden lg:flex items-center">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search pets..."
-                  className="pl-10 pr-4 py-2 w-48 rounded-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            {/* Notification & Profile (Desktop only) */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 relative">
-                <Bell className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                  3
-                </span>
-              </button>
-              <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
-                <UserCircle className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-              </button>
-            </div>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className="w-5 h-5 text-gray-700" />
-              ) : (
-                <Sun className="w-5 h-5 text-yellow-500" />
-              )}
-            </button>
-
-            {/* Adopt Button */}
-            <Link
-              href="/adopt"
-              className="hidden sm:flex items-center space-x-2 bg-gradient-to-r from-pink-600 to-orange-500 text-white px-4 lg:px-6 py-2.5 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
-            >
-              <Heart className="w-4 h-4" />
-              <span className="font-semibold">Adopt Now</span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Mobile Search (Tablet & Mobile) */}
-        <div className="lg:hidden py-3">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search for pets, breeds, etc..."
-              className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-            />
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div 
-          className={`lg:hidden fixed inset-x-0 top-0 z-40 transform transition-all duration-300 ease-in-out ${
-            isMenuOpen 
-              ? "translate-y-16 opacity-100 visible" 
-              : "-translate-y-full opacity-0 invisible"
-          }`}
-        >
-          <div className="bg-white dark:bg-gray-900 shadow-2xl rounded-b-2xl border-t border-gray-200 dark:border-gray-800">
-            <div className="px-4 py-6 space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                >
-                  <span className="text-pink-500">{link.icon}</span>
-                  <span className="text-lg font-medium text-gray-800 dark:text-gray-200">
-                    {link.label}
-                  </span>
-                </Link>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link, index) => (
+                <div key={link.name} className="relative group">
+                  {link.hasDropdown ? (
+                    <details className="dropdown dropdown-hover">
+                      <summary className="btn btn-ghost font-medium text-base text-accent-yellow hover:bg-base-200 transition-colors duration-200 cursor-pointer">
+                        <span className="flex items-center gap-1.5">
+                          {link.name === 'Home' && <span className="star-icon"></span>}{link.name}
+                          <svg className="w-4 h-4 transition-transform group-hover:rotate-180 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </summary>
+                      <ul className="dropdown-content menu bg-base-100 rounded-lg shadow-lg border border-base-300 p-2 w-52 mt-2">
+                        <li><Link href={`${link.href}/option1`} className="text-accent-yellow hover:bg-base-200">Option 1</Link></li>
+                        <li><Link href={`${link.href}/option2`} className="text-accent-yellow hover:bg-base-200">Option 2</Link></li>
+                        <li><Link href={`${link.href}/option3`} className="text-accent-yellow hover:bg-base-200">Option 3</Link></li>
+                      </ul>
+                    </details>
+                  ) : (
+                    <Link 
+                      href={link.href}
+                      className="btn btn-ghost font-medium text-base text-accent-yellow hover:bg-base-200 transition-all duration-200"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
+                </div>
               ))}
+            </div>
+
+            {/* Right Side Actions */}
+            <div className="flex items-center gap-3">
               
-              {/* Mobile Additional Actions */}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
-                <button className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 w-full">
-                  <Bell className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                  <span className="text-lg font-medium text-gray-800 dark:text-gray-200">
-                    Notifications
-                  </span>
-                  <span className="ml-auto bg-red-500 text-white text-sm px-2 py-1 rounded-full">
-                    3
-                  </span>
-                </button>
-                
-                <button className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 w-full">
-                  <UserCircle className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                  <span className="text-lg font-medium text-gray-800 dark:text-gray-200">
-                    Profile
-                  </span>
-                </button>
+              {/* Theme Toggle */}
+              <button 
+                onClick={toggleTheme}
+                className="btn btn-circle btn-ghost hover:bg-base-200 transition-all duration-200"
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? (
+                  <svg className="w-5 h-5 fill-current text-accent-yellow" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 fill-current text-accent-yellow" viewBox="0 0 24 24">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/>
+                  </svg>
+                )}
+              </button>
+
+              {/* Login Button - Desktop */}
+              <Link 
+                href="/login"
+                className="hidden lg:inline-flex btn btn-ghost border border-base-300 hover:bg-base-200 transition-all duration-200 font-medium text-accent-yellow"
+              >
+                Login
+              </Link>
+
+              {/* Registration Button - Desktop */}
+              {/* <Link 
+                href="/register"
+                className="hidden lg:inline-flex btn bg-base-300 hover:bg-base-content hover:text-base-100 border-none transition-all duration-200 font-medium"
+              >
+                Registration
+              </Link> */}
+
+              {/* Call Button - Desktop */}
+              {/* <a 
+                href="tel:123-456-7890"
+                className="hidden lg:inline-flex items-center gap-2 btn bg-base-200 hover:bg-base-300 border border-base-300 transition-all duration-200"
+                aria-label="Call us"
+              >
+                <svg className="w-5 h-5 text-accent-yellow" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                </svg>
+                <span className="hidden xl:inline text-accent-yellow">123-456-7890</span>
+              </a> */}
+
+              {/* Mobile Menu Toggle */}
+              <div className="lg:hidden">
+                <label htmlFor="mobile-drawer" className="btn btn-circle btn-ghost drawer-button hover:bg-base-200 transition-colors duration-200">
+                  <svg className="w-6 h-6 text-accent-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </label>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+
+        {/* Mobile Drawer */}
+        <div className="drawer drawer-end lg:hidden">
+          <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-side z-50">
+            <label htmlFor="mobile-drawer" className="drawer-overlay"></label>
+            <div className="menu p-6 w-80 min-h-full bg-base-100 text-base-content border-l border-base-300">
+              
+              {/* Mobile Menu Header */}
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-base-300">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-neutral text-neutral-content rounded-lg">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8.5 3C7.119 3 6 4.119 6 5.5S7.119 8 8.5 8 11 6.881 11 5.5 9.881 3 8.5 3zm7 0C14.119 3 13 4.119 13 5.5S14.119 8 15.5 8 18 6.881 18 5.5 16.881 3 15.5 3zM5 9c-1.381 0-2.5 1.119-2.5 2.5S3.619 14 5 14s2.5-1.119 2.5-2.5S6.381 9 5 9zm14 0c-1.381 0-2.5 1.119-2.5 2.5S17.619 14 19 14s2.5-1.119 2.5-2.5S20.381 9 19 9zm-7 2c-2.761 0-5 2.239-5 5 0 2.762 2.239 5 5 5s5-2.238 5-5c0-2.761-2.239-5-5-5z"/>
+                    </svg>
+                  </div>
+                  <span className="text-xl font-bold">Menu</span>
+                </div>
+                <label htmlFor="mobile-drawer" className="btn btn-sm btn-circle btn-ghost">✕</label>
+              </div>
+
+              {/* Mobile Navigation Links */}
+              <ul className="space-y-2">
+                {navLinks.map((link, index) => (
+                  <li key={link.name}>
+                    {link.hasDropdown ? (
+                      <details className="collapse collapse-arrow bg-base-200 rounded-lg">
+                        <summary className="collapse-title font-medium text-base text-accent-yellow">
+                          {link.name === 'Home' && <span className="star-icon mr-1">⭐</span>}
+                          {link.name}
+                        </summary>
+                        <div className="collapse-content">
+                          <ul className="space-y-1 mt-2">
+                            <li><Link href={`${link.href}/option1`} className="block p-3 rounded-lg hover:bg-base-300 transition-colors text-accent-yellow">Option 1</Link></li>
+                            <li><Link href={`${link.href}/option2`} className="block p-3 rounded-lg hover:bg-base-300 transition-colors text-accent-yellow">Option 2</Link></li>
+                            <li><Link href={`${link.href}/option3`} className="block p-3 rounded-lg hover:bg-base-300 transition-colors text-accent-yellow">Option 3</Link></li>
+                          </ul>
+                        </div>
+                      </details>
+                    ) : (
+                      <Link 
+                        href={link.href}
+                        className="block p-4 rounded-lg bg-base-200 hover:bg-base-300 font-medium text-base transition-all duration-200 text-accent-yellow"
+                      >
+                        {link.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Mobile Auth Buttons */}
+              <div className="mt-6 space-y-3">
+                <Link 
+                  href="/login"
+                  className="btn btn-ghost border border-base-300 w-full hover:bg-base-200 font-medium text-accent-yellow"
+                >
+                  Login
+                </Link>
+                <Link 
+                  href="/register"
+                  className="btn bg-base-300 hover:bg-base-content hover:text-base-100 w-full border-none font-medium"
+                >
+                  Registration
+                </Link>
+              </div>
+
+              {/* Mobile Contact Card */}
+              <div className="mt-6 p-4 bg-base-200 rounded-lg border border-base-300">
+                <div className="text-sm opacity-70 mb-2">Need help?</div>
+                <a 
+                  href="tel:123-456-7890" 
+                  className="flex items-center gap-2 text-base font-bold hover:opacity-70 transition-opacity text-accent-yellow"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                  </svg>
+                  123-456-7890
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }

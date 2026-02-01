@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-// import Image from "next/image";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 const Banner = () => {
@@ -17,7 +17,7 @@ const Banner = () => {
                 Pet Today!
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-md leading-relaxed">
-                We're here to help you reunite with your beloved pet or help a
+                We&apos;re here to help you reunite with your beloved pet or help a
                 lost one get back to its owner. Start your search or report a
                 found pet today!
               </p>
@@ -55,7 +55,7 @@ const Banner = () => {
           {/* Right Side - Images */}
           <div className="relative order-1 lg:order-2 w-full">
             {/* Main Image */}
-            {/* <div className="relative rounded-2xl md:rounded-3xl overflow-hidden aspect-[4/3] shadow-xl">
+            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden aspect-[4/3] shadow-xl">
               <Image
                 src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&auto=format&fit=crop&q=80"
                 alt="Happy pets - dogs and cats"
@@ -64,12 +64,12 @@ const Banner = () => {
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-            </div> */}
+            </div>
 
             {/* Floating Card */}
             <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 md:bottom-0 md:right-0 lg:-bottom-6 lg:-right-6 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-64 sm:w-72 md:w-80 lg:w-96 border border-gray-200 dark:border-gray-700 p-4 sm:p-5 md:p-6">
               {/* Small Image */}
-              {/* <div className="mb-3 md:mb-4 rounded-lg md:rounded-xl overflow-hidden aspect-video relative">
+              <div className="mb-3 md:mb-4 rounded-lg md:rounded-xl overflow-hidden aspect-video relative">
                 <Image
                   src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&auto=format&fit=crop&q=80"
                   alt="Cute pets group"
@@ -77,13 +77,13 @@ const Banner = () => {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 400px"
                 />
-              </div> */}
+              </div>
 
               <h3 className="text-base md:text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2">
                 Where Pet Love Comes Alive
               </h3>
               <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
-                We're here to help you reunite with your beloved pet or help a
+                We&apos;re here to help you reunite with your beloved pet or help a
                 lost one get back to its owner.
               </p>
 
