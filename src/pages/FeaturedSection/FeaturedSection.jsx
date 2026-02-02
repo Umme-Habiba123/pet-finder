@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function Services() {
+export default function FeaturedSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -140,7 +140,7 @@ export default function Services() {
           {/* Section Header */}
           <div className="text-center mb-12 lg:mb-16">
             <div className={`decorative-line justify-center mb-4 ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'}`}>
-              <span className="text-sm lg:text-base font-medium text-base-content/60 uppercase tracking-wider">
+              <span className="text-sm lg:text-base font-medium text-accent-yellow uppercase tracking-wider">
                 What We Offer
               </span>
             </div>
@@ -163,22 +163,22 @@ export default function Services() {
             <div className={`space-y-6 ${isVisible ? 'animate-fade-in-left delay-400' : 'opacity-0'}`}>
               <div>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-base-content mb-4">
-                  Quality Services
+                  Pet Adoption & Care
                 </h3>
                 
-                <p className="text-base lg:text-lg text-base-content/70 mb-6 leading-relaxed">
-                  We offer quick & easy services for cats and dogs, accumsan felis id, fermentum purus. Quisque vitae hendrerit elit.
+                <p className="text-base lg:text-lg text-accent-yellow mb-6 leading-relaxed">
+                  Find your perfect companion with PetFinder. We connect loving pets with caring families through our comprehensive adoption and care services.
                 </p>
                 
                 <p className="text-sm lg:text-base text-base-content/60 leading-relaxed">
-                  Aliquam erat volutpat In id fermentum augue, ut pellentesque leo. Maecenas at arcu risus. Donec commodo sodales ex, scelerisque laoreet nibh hendrerit id. In aliquet magna nec lobortis maximus. Etiam rhoncus leo a dolor placerat, nec elementum ipsum convall.
+                  Our platform makes pet adoption simple and safe. We provide complete care information, health records, and ongoing support to ensure every pet finds their forever home. Whether you&apos;re looking for a playful puppy, a gentle cat, or any furry friend, PetFinder is here to help you every step of the way.
                 </p>
               </div>
               
               <div className="pt-4">
                 <Link 
                   href="/contact"
-                  className="btn bg-gray-300 hover:bg-gray-400 text-black border-none px-8 lg:px-10 py-3 text-base lg:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="btn bg-[#3B82F6] hover:bg-[#2563EB] text-white border-none px-8 lg:px-10 py-3 text-base lg:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 >
                   CONTACT US
                 </Link>
