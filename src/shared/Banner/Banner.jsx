@@ -190,7 +190,7 @@ export default function HeroSection() {
               <div className={`${isVisible ? 'animate-fade-in-right delay-300' : 'opacity-0'}`}>
                 <Link 
                   href="/puppies"
-                  className="btn bg-gray-200 hover:gray-500 text-black border-none px-8 lg:px-10 py-3 text-base lg:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group inline-flex items-center gap-3"
+                  className="btn bg-gray-100 hover:bg-gray-200 text-black border-none px-8 lg:px-10 py-3 text-base lg:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group inline-flex items-center gap-3"
                 >
                   View Puppies
                   <svg 

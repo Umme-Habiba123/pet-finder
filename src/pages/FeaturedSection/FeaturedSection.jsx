@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function FeaturedSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,7 +17,7 @@ export default function FeaturedSection() {
       { threshold: 0.1 }
     );
 
-    const section = document.getElementById('services-section');
+    const section = document.getElementById('featured-section');
     if (section) {
       observer.observe(section);
     }
@@ -29,6 +28,39 @@ export default function FeaturedSection() {
       }
     };
   }, []);
+
+  const features = [
+    {
+      icon: (
+        <svg className="w-12 h-12 lg:w-14 lg:h-14" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M18.5 2C17.119 2 16 3.119 16 4.5c0 .78.36 1.47.92 1.93-.64.82-1.43 1.54-2.29 2.14-.22-.98-.94-1.79-1.88-2.17C13.35 5.53 14 4.58 14 3.5 14 2.119 12.881 1 11.5 1S9 2.119 9 3.5c0 1.08.65 2.03 1.75 2.9-.94.38-1.66 1.19-1.88 2.17-.86-.6-1.65-1.32-2.29-2.14.56-.46.92-1.15.92-1.93C7.5 3.119 6.381 2 5 2S2.5 3.119 2.5 4.5c0 1.14.77 2.1 1.82 2.39.31 1.05.86 2.01 1.6 2.84.5 2.33 2.05 4.31 4.08 5.44v.08c0 1.381 1.119 2.5 2.5 2.5s2.5-1.119 2.5-2.5v-.08c2.03-1.13 3.58-3.11 4.08-5.44.74-.83 1.29-1.79 1.6-2.84 1.05-.29 1.82-1.25 1.82-2.39 0-1.381-1.119-2.5-2.5-2.5z"/>
+        </svg>
+      ),
+      title: "Largest non-profit pet's shelter",
+      description: "Well gaudy hound hired inset flailed luxuriant much followed less this maternal oh well unavoidable crudely aloof in more save groomed."
+    },
+    {
+      icon: (
+        <svg className="w-12 h-12 lg:w-14 lg:h-14" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          <path d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 10c-1.1 0-2 .9-2 2h4c0-1.1-.9-2-2-2z"/>
+        </svg>
+      ),
+      title: "Convenient pet adoption for public",
+      description: "Well gaudy hound hired inset flailed luxuriant much followed less this maternal oh well unavoidable crudely aloof in more save groomed."
+    },
+    {
+      icon: (
+        <svg className="w-12 h-12 lg:w-14 lg:h-14" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+          <circle cx="9" cy="9" r="1.5"/>
+          <circle cx="15" cy="9" r="1.5"/>
+        </svg>
+      ),
+      title: "Innovative ways to help animals",
+      description: "Well gaudy hound hired inset flailed luxuriant much followed less this maternal oh well unavoidable crudely aloof in more save groomed."
+    }
+  ];
 
   return (
     <>
@@ -107,109 +139,127 @@ export default function FeaturedSection() {
           opacity: 0;
         }
         
-        /* Decorative line */
-        .decorative-line {
-          position: relative;
-          display: inline-flex;
+        .delay-600 {
+          animation-delay: 0.6s;
+          opacity: 0;
+        }
+        
+        /* Video overlay styles */
+        .video-overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: all 0.3s ease;
+        }
+        
+        .video-container:hover .video-overlay {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .play-button {
+          width: 80px;
+          height: 80px;
+          background: #D4A017;
+          border-radius: 50%;
+          display: flex;
           align-items: center;
-          gap: 1rem;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          border: 3px solid rgba(255, 255, 255, 0.9);
         }
         
-        .decorative-line::before,
-        .decorative-line::after {
-          content: '';
-          height: 2px;
-          width: 50px;
-          background: linear-gradient(to right, transparent, #D1D5DB, transparent);
+        .play-button:hover {
+          background: #B8860B;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+          transform: scale(1.05);
         }
         
-        @media (max-width: 640px) {
-          .decorative-line::before,
-          .decorative-line::after {
-            width: 30px;
+        @media (max-width: 768px) {
+          .play-button {
+            width: 60px;
+            height: 60px;
           }
         }
       `}</style>
 
       <section 
-        id="services-section"
-        className="py-16 lg:py-24 bg-base-100 overflow-hidden"
+        id="featured-section"
+        className="py-16 lg:py-24 bg-base-100"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Section Header */}
-          <div className="text-center mb-12 lg:mb-16">
-            <div className={`decorative-line justify-center mb-4 ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'}`}>
-              <span className="text-sm lg:text-base font-medium text-accent-yellow uppercase tracking-wider">
-                What We Offer
-              </span>
-            </div>
-            
-            <h2 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-base-content mb-4 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
-              OUR SERVICES
-            </h2>
-            
-            <div className={`flex justify-center ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
-              <svg className="w-12 h-12 lg:w-16 lg:h-16 fill-current text-accent-yellow opacity-30" viewBox="0 0 24 24">
-                <path d="M8.5 3C7.119 3 6 4.119 6 5.5S7.119 8 8.5 8 11 6.881 11 5.5 9.881 3 8.5 3zm7 0C14.119 3 13 4.119 13 5.5S14.119 8 15.5 8 18 6.881 18 5.5 16.881 3 15.5 3zM5 9c-1.381 0-2.5 1.119-2.5 2.5S3.619 14 5 14s2.5-1.119 2.5-2.5S6.381 9 5 9zm14 0c-1.381 0-2.5 1.119-2.5 2.5S17.619 14 19 14s2.5-1.119 2.5-2.5S20.381 9 19 9zm-7 2c-2.761 0-5 2.239-5 5 0 2.762 2.239 5 5 5s5-2.238 5-5c0-2.761-2.239-5-5-5z"/>
-              </svg>
-            </div>
-          </div>
-
-          {/* Content Grid */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-7xl mx-auto">
             
-            {/* Left Content - Text */}
-            <div className={`space-y-6 ${isVisible ? 'animate-fade-in-left delay-400' : 'opacity-0'}`}>
-              <div>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-base-content mb-4">
-                  Pet Adoption & Care
-                </h3>
+            {/* Left Side - Video Section */}
+            <div className={`relative ${isVisible ? 'animate-fade-in-left delay-100' : 'opacity-0'}`}>
+              <div className="relative video-container aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                {/* Background Image */}
+                <img 
+                  src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3"
+                  alt="Happy couple with their adopted dog at the beach"
+                  className="w-full h-full object-cover"
+                />
                 
-                <p className="text-base lg:text-lg text-accent-yellow mb-6 leading-relaxed">
-                  Find your perfect companion with PetFinder. We connect loving pets with caring families through our comprehensive adoption and care services.
-                </p>
+                {/* Dark overlay for better contrast */}
+                <div className="absolute inset-0 bg-black/20"></div>
                 
-                <p className="text-sm lg:text-base text-base-content/60 leading-relaxed">
-                  Our platform makes pet adoption simple and safe. We provide complete care information, health records, and ongoing support to ensure every pet finds their forever home. Whether you&apos;re looking for a playful puppy, a gentle cat, or any furry friend, PetFinder is here to help you every step of the way.
-                </p>
-              </div>
-              
-              <div className="pt-4">
-                <Link 
-                  href="/contact"
-                  className="btn bg-[#3B82F6] hover:bg-[#2563EB] text-white border-none px-8 lg:px-10 py-3 text-base lg:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                >
-                  CONTACT US
-                </Link>
-              </div>
-            </div>
-            
-            {/* Right Content - Cat Image */}
-            <div className={`relative ${isVisible ? 'animate-fade-in-right delay-500' : 'opacity-0'}`}>
-              <div className="relative w-full h-[350px] sm:h-[450px] lg:h-[500px]">
-                {/* Decorative background blur */}
-                <div className="absolute inset-0 bg-gradient-to-br from-base-200 to-transparent rounded-3xl blur-2xl opacity-50"></div>
-                
-                {/* Cat Image */}
-                <div className="relative z-10 h-full w-full flex items-end justify-center">
-                  <img 
-                    src="https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3" 
-                    alt="Adorable cat representing our quality services" 
-                    className="w-full h-full object-contain drop-shadow-2xl"
-                  />
+                {/* Play Button Overlay */}
+                <div className="video-overlay">
+                  <button 
+                    className="play-button group"
+                    aria-label="Play featured video"
+                  >
+                    <svg 
+                      className="w-8 h-8 text-white ml-1" 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </button>
                 </div>
                 
-                {/* Decorative elements */}
-                <div className="absolute top-10 left-5 w-20 h-20 bg-accent-yellow/10 rounded-full blur-xl"></div>
-                <div className="absolute bottom-10 right-5 w-24 h-24 bg-accent-yellow/10 rounded-full blur-xl"></div>
+                {/* Featured Video Label */}
+                <div className="absolute bottom-6 left-6 bg-neutral text-neutral-content px-5 py-2.5 rounded-lg shadow-lg">
+                  <span className="font-semibold text-sm lg:text-base uppercase tracking-wide">
+                    Featured Video
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Divider Line */}
-          <div className="mt-16 lg:mt-24 max-w-4xl mx-auto">
-            <div className="h-px bg-gradient-to-r from-transparent via-base-300 to-transparent"></div>
+            {/* Right Side - Features List */}
+            <div className="space-y-8 lg:space-y-10">
+              {features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className={`flex gap-6 items-start ${
+                    isVisible 
+                      ? `animate-fade-in-right delay-${(index + 2) * 100}` 
+                      : 'opacity-0'
+                  }`}
+                >
+                  {/* Icon */}
+                  <div className="flex-shrink-0">
+                    <div className="text-base-content hover:text-accent-yellow transition-colors duration-300">
+                      {feature.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-xl sm:text-2xl font-bold text-base-content mb-3 hover:text-accent-yellow transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm lg:text-base text-base-content/60 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
