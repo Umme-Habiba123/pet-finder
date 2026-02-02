@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 export default function FeaturedSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,6 +29,14 @@ export default function FeaturedSection() {
       }
     };
   }, []);
+
+  const openVideoModal = () => {
+    setIsVideoModalOpen(true);
+  };
+
+  const closeVideoModal = () => {
+    setIsVideoModalOpen(false);
+  };
 
   const features = [
     {
@@ -210,6 +219,7 @@ export default function FeaturedSection() {
                   <button 
                     className="play-button group"
                     aria-label="Play featured video"
+                    onClick={openVideoModal}
                   >
                     <svg 
                       className="w-8 h-8 text-white ml-1" 
@@ -262,6 +272,40 @@ export default function FeaturedSection() {
             </div>
           </div>
         </div>
+
+        {/* Video Modal */}
+        {isVideoModalOpen && (
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            onClick={closeVideoModal}
+          >
+            <div 
+              className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeVideoModal}
+                className="absolute top-4 right-4 z-10 btn btn-circle btn-sm bg-neutral hover:bg-neutral-focus text-neutral-content"
+                aria-label="Close video"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* YouTube Video Embed */}
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/5MpfPbFlpNw?si=IEhs0o3VUd4G_xwi"
+                title="Featured Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );
