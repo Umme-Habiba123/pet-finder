@@ -6,6 +6,7 @@ import NavBar from "@/shared/Navbar/Navbar";
 import RealPetTeamSlider from "@/shared/RealPetTeamSlider/RealPetTeamSlider";
 import Banner from "@/shared/Banner/Banner";
 import PetCareHero from "@/pages/PetCreHero/PetCareHero";
+import BlogSection from "@/pages/BlogSection/BlogSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <RealPetTeamSlider />
       <PetCareHero></PetCareHero>
       <Services></Services>
+      <BlogSection></BlogSection>
       <FeaturedSection></FeaturedSection>
       <Footer />
     </div>
