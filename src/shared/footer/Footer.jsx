@@ -113,16 +113,26 @@ const Footer = () => {
             <ul className="space-y-5 text-gray-600 dark:text-gray-400">
               <li className="flex items-start gap-4">
                 <FaMapMarkerAlt className="text-[#D4A017] mt-1 shrink-0" />
-                <span className="text-sm font-medium">BellSouth, Harley Street Florida 33968</span>
+                <span className="text-sm font-medium">Dhaka, Bangladesh</span>
               </li>
               <li className="flex items-center gap-4">
                 <FaPhoneAlt className="text-[#D4A017] shrink-0" />
-                <span className="text-sm font-medium">+(1) 234 567 8900</span>
+                <span className="text-sm font-medium">+880 18 7333 3199 </span>
+              </li>
+              <li className="flex items-center gap-4">
+                <FaPhoneAlt className="text-[#D4A017] shrink-0" />
+                <span className="text-sm font-medium">+880 15 6005 8477 </span>
               </li>
               <li className="flex items-center gap-4">
                 <FaEnvelope className="text-[#D4A017] shrink-0" />
                 <span className="text-sm font-medium border-b border-transparent hover:border-[#D4A017] transition-all">
-                  example@petfinder.com
+                  habibaislammim@gmail.com
+                </span>
+              </li>
+              <li className="flex items-center gap-4">
+                <FaEnvelope className="text-[#D4A017] shrink-0" />
+                <span className="text-sm font-medium border-b border-transparent hover:border-[#D4A017] transition-all">
+                  fahimshahrier2023@gmail.com
                 </span>
               </li>
             </ul>
