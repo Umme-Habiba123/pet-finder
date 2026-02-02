@@ -111,6 +111,8 @@ const RealPetTeamSlider = () => {
                 friend
               </p>
 
+              {/* a button */}
+
               <button className="bg-gray-100 hover:bg-gray-200 text-black px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-300">
                 VIEW ALL TEAM
               </button>
