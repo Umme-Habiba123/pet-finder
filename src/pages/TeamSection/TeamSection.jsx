@@ -6,22 +6,22 @@ const team = [
   {
     name: "Thomas Nick",
     role: "Pet Sitter",
-    img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=600",
+    img: "https://i.ibb.co.com/B2JK1N2m/Messenger-creation-1850754902032508.jpg",
   },
   {
     name: "Lucy Anderson",
     role: "Pet Groomer",
-    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600",
+    img: "https://i.ibb.co.com/ttynVJ1/875ca1d9-8b57-4c3c-84f3-17bd1e129f85.jpg",
   },
   {
     name: "Daniel Jacob",
     role: "Pet Doctor",
-    img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=600",
+    img: "https://i.ibb.co.com/rfQHnV3M/325791975-1317271512454522-9114919137207257526-n.jpg",
   },
   {
     name: "James Harry",
     role: "Pet Sitter",
-    img: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=600",
+    img: "https://i.ibb.co.com/Fq3JtJbN/Messenger-creation-822982186256342.jpg",
   },
 ];
 
