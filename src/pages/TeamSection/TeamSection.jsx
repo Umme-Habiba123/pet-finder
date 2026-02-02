@@ -27,53 +27,54 @@ const team = [
 
 export default function TeamSection() {
   return (
-    <section className="py-20 bg-base-100 dark:bg-neutral transition-colors duration-300">
+    <section className="py-20 bg-white dark:bg-[#111111] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 text-center">
         
-        {/* Header */}
-        <p className="text-primary italic mb-2">
+        {/* Top Subtitle */}
+        <p className="text-[#D4A017] italic mb-2">
           Because We Really Care About Your Pets
         </p>
-        <h2 className="text-4xl font-bold mb-12 text-base-content">
+
+        {/* Main Title */}
+        <h2 className="text-4xl font-bold mb-12 text-black dark:text-white">
           Our Team Members
         </h2>
 
-        {/* Grid */}
+        {/* Team Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {team.map((member, index) => (
             <div
               key={index}
-              className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-2xl transition-all duration-300 group"
+              className="bg-white dark:bg-[#1a1a1a] shadow-md hover:shadow-xl transition-all duration-300 rounded-xl p-5 group"
             >
-              <figure className="px-6 pt-6">
-                <div className="relative w-full h-64 overflow-hidden rounded-xl">
-                  <Image
-                    src={member.img}
-                    alt={member.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </figure>
+              <div className="relative w-full h-64 mb-5 overflow-hidden rounded-lg">
+                <Image
+                  src={member.img}
+                  alt={member.name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
 
-              <div className="card-body items-center text-center">
-                <h3 className="card-title text-lg">{member.name}</h3>
-                <p className="text-sm uppercase tracking-widest text-primary">
-                  {member.role}
-                </p>
+              <h3 className="text-lg font-semibold text-black dark:text-white">
+                {member.name}
+              </h3>
 
-                {/* Social Icons */}
-                <div className="flex gap-3 mt-4">
-                  <button className="btn btn-circle btn-sm bg-base-100 dark:bg-neutral hover:bg-primary hover:text-white">
-                    <FaFacebookF size={14} />
-                  </button>
-                  <button className="btn btn-circle btn-sm bg-base-100 dark:bg-neutral hover:bg-primary hover:text-white">
-                    <FaTwitter size={14} />
-                  </button>
-                  <button className="btn btn-circle btn-sm bg-base-100 dark:bg-neutral hover:bg-primary hover:text-white">
-                    <FaGooglePlusG size={14} />
-                  </button>
-                </div>
+              <p className="text-xs tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-4">
+                {member.role}
+              </p>
+
+              {/* Social Icons */}
+              <div className="flex justify-center gap-3 mt-3">
+                <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-[#D4A017] hover:text-white hover:border-[#D4A017] transition">
+                  <FaFacebookF size={12} />
+                </button>
+                <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-[#D4A017] hover:text-white hover:border-[#D4A017] transition">
+                  <FaTwitter size={12} />
+                </button>
+                <button className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-[#D4A017] hover:text-white hover:border-[#D4A017] transition">
+                  <FaGooglePlusG size={12} />
+                </button>
               </div>
             </div>
           ))}
