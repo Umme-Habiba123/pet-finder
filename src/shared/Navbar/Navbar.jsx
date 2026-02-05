@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowRoundDown } from "react-icons/io";
 
 
 export default function Navbar() {
@@ -31,7 +31,7 @@ export default function Navbar() {
     { name: "About", href: "/about" },
     { name: "Puppies", href: "/puppies" },
     { name: "Services", href: "/service" },
-    { name: "Pages", href:`/pages ${<IoIosArrowDown />}`, hasDropdown: true },
+    { name: "Pages", href:"/pages", hasDropdown: true,icon: <IoIosArrowDown />  },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -62,7 +62,7 @@ export default function Navbar() {
               link.hasDropdown ? (
                 <details key={link.name} className="dropdown dropdown-hover">
                   <summary className="btn btn-ghost text-accent-yellow">
-                    {link.name}
+                    {link.name} { link.icon}
                   </summary>
                   <ul className="dropdown-content menu bg-base-100 shadow rounded-box w-40">
                     <li><Link href={`${link.href}/option1`}>Add Pet</Link></li>
