@@ -27,7 +27,7 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: "Home", href: "/", hasDropdown: true },
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Puppies", href: "/puppies" },
     { name: "Services", href: "/service" },
@@ -65,9 +65,9 @@ export default function Navbar() {
                     {link.name} { link.icon}
                   </summary>
                   <ul className="dropdown-content menu bg-base-100 shadow rounded-box w-40">
-                    <li><Link href={`${link.href}/option1`}>Add Pet</Link></li>
-                    <li><Link href={`${link.href}/option2`}>Get Pet</Link></li>
-                    <li><Link href={`${link.href}/option3`}>Foster</Link></li>
+                    <li><Link href={`/addPetForm`}>Add Pet</Link></li>
+                    <li><Link href={`${link.href}/getPet`}>Get Pet</Link></li>
+                    <li><Link href={`${link.href}/foster`}>Foster</Link></li>
                   </ul>
                 </details>
               ) : (
