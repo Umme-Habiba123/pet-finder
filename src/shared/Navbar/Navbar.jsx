@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { IoIosArrowDown } from "react-icons/io";
+
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
@@ -29,7 +31,7 @@ export default function Navbar() {
     { name: "About", href: "/about" },
     { name: "Puppies", href: "/puppies" },
     { name: "Services", href: "/service" },
-    { name: "Pages", href: "/pages", hasDropdown: true },
+    { name: "Pages", href:`/pages ${<IoIosArrowDown />}`, hasDropdown: true },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -63,9 +65,9 @@ export default function Navbar() {
                     {link.name}
                   </summary>
                   <ul className="dropdown-content menu bg-base-100 shadow rounded-box w-40">
-                    <li><Link href={`${link.href}/option1`}>Option 1</Link></li>
-                    <li><Link href={`${link.href}/option2`}>Option 2</Link></li>
-                    <li><Link href={`${link.href}/option3`}>Option 3</Link></li>
+                    <li><Link href={`${link.href}/option1`}>Add Pet</Link></li>
+                    <li><Link href={`${link.href}/option2`}>Get Pet</Link></li>
+                    <li><Link href={`${link.href}/option3`}>Foster</Link></li>
                   </ul>
                 </details>
               ) : (
