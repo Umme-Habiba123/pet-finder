@@ -74,7 +74,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="btn btn-ghost text-accent-yellow"
+                  className="btn btn-ghost text-accent-yellow "
                 >
                   {link.name}
                 </Link>
